@@ -1,0 +1,14 @@
+--- a/dlls/win32u/vulkan.c
++++ b/dlls/win32u/vulkan.c
+@@ -2994,6 +2994,11 @@
+     .p_map_device_extensions = lazydrv_map_device_extensions,
+ };
+ 
++#ifndef SONAME_LIBVULKAN
++/* build sem Vulkan: o dlopen abaixo falha e o Vulkan fica desativado */
++#define SONAME_LIBVULKAN "libvulkan.1.dylib"
++#endif
++
+ static void vulkan_init_once(void)
+ {
+     struct vulkan_instance_extensions extensions = {0};

@@ -1,0 +1,12 @@
+# Nada do jogo, do Enhanced Edition, de traduções ou de builds entra no repositório
+*.rar
+*.zip
+*.iso
+*.exe
+*.dll
+*.bik
+*.cab
+build/
+wine/
+prefix/
+.DS_Store
