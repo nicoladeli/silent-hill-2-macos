@@ -44,7 +44,9 @@ fi
 [[ -f $CAB_DIR/data1.cab ]] || die "data1.cab não encontrado no instalador"
 
 step "Criando o prefixo Wine em $WINEPREFIX"
-wine wineboot --init >/dev/null 2>&1
+# mscoree/mshtml vazios: sem isso o wineboot fica parado na janela de instalar Wine Mono/Gecko,
+# que o jogo não usa
+WINEDLLOVERRIDES="mscoree,mshtml=" wine wineboot --init >/dev/null 2>&1
 wineserver -w
 wine reg add 'HKCU\Software\Wine\DllOverrides' /v d3d8 /d native,builtin /f >/dev/null
 wine reg add 'HKCU\Software\Wine\DllOverrides' /v dinput8 /d native,builtin /f >/dev/null
